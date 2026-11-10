@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>键律 KeyPulse — 码字工作者的状态管理与调整助手 (macOS)</title>
+  <style>
+    :root {
+      --bg: #f6f3ee;
+      --card: #ffffff;
+      --border: #dcd6cb;
+      --ink: #1e1d1b;
+      --secondary: #666058;
+      --brand: #c7482e;
+      --green: #1ba06f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      padding: 48px 20px 80px;
+    }
+    .container { max-width: 820px; margin: 0 auto; }
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 36px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.05);
+      margin-bottom: 24px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green);
+      background: rgba(27, 160, 111, 0.12);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .sub { font-size: 17px; color: var(--secondary); margin-bottom: 24px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+    }
+    .card h3 { font-size: 17px; margin-bottom: 6px; }
+    .card p { font-size: 14px; color: var(--secondary); }
+    .links { margin-top: 20px; display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .btn-primary { background: var(--brand); color: #fff; }
+    .btn-outline { border: 1px solid var(--border); color: var(--ink); background: #fff; }
+    footer { text-align: center; font-size: 13px; color: var(--secondary); margin-top: 36px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <span class="badge">macOS 13.0+ · 100% On-Device · No Cloud</span>
+      <h1>键律 KeyPulse</h1>
+      <p class="sub">码字工作者的状态管理与调整助手 · State &amp; Rhythm Assistant for Coders &amp; Writers</p>
+      <p style="font-size:15px;color:var(--secondary);">
+        键律 (KeyPulse) 常驻于 Mac 菜单栏，仅用一颗直观的 Emoji 表情（😎 😊 🧐 😣 🥱 🤯 😌 😴 🤐），实时根据按键时间间隔、退格修改率与连续专注时长，帮助你识别高效心流、卡壳连删与久坐疲劳，并提供内置可折叠番茄专注钟与全天手速/按键统计。
+      </p>
+      <div class="links">
+        <a class="btn btn-primary" href="privacy.html">隐私政策 / Privacy Policy</a>
+        <a class="btn btn-outline" href="https://github.com/zxypro1/keypulse-site/issues">技术支持与反馈 / Support &amp; Feedback</a>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>😎 实时心流与疲劳感知</h3>
+        <p>自动分析近 3 分钟退格修改率、连删占比与敲击间隔平稳度，在高频连删或连续输入超 50 分钟时温柔提醒小憩。</p>
+      </div>
+      <div class="card">
+        <h3>🍅 模块化番茄专注钟</h3>
+        <p>支持 15 / 25 / 45 分钟三档专注倒计时与休息流转，自动统计本轮专注输入键数与今日完成的番茄数。</p>
+      </div>
+      <div class="card">
+        <h3>🔒 100% 本地隐私安全</h3>
+        <p>零网络权限、零云端上传。仅在本地统计按键时间间隔与分类计数，绝不读取或记录任何具体字符或密码。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>常见问题与技术支持 (FAQ &amp; Support)</h3>
+      <p style="margin-top:8px;"><strong>1. 为什么需要「输入监控 (Input Monitoring)」权限？</strong><br/>
+      macOS 要求任何在后台统计全局按键次数的工具必须获得用户的「输入监控」授权。键律仅读取按键事件的时间戳与分类（普通输入、退格、方向/回车、快捷键），绝不读取具体输入的文字内容。</p>
+      <p style="margin-top:12px;"><strong>2. 如何联系开发者获取支持？ / Contact Support</strong><br/>
+      如果您在使用中有任何问题或建议，欢迎通过 <a href="https://github.com/zxypro1/keypulse-site/issues">GitHub Issues</a> 或发送邮件至 <a href="mailto:1018995004@qq.com">1018995004@qq.com</a> 与我们联系。</p>
+    </div>
+
+    <footer>
+      Copyright © 2026 KeyPulse (键律). All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>

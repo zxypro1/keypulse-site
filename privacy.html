@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>隐私政策 / Privacy Policy — 键律 KeyPulse</title>
+  <title>隐私政策 / Privacy Policy — KeyPulse (键律)</title>
   <style>
     :root {
       --bg: #f6f3ee;
@@ -19,9 +19,38 @@
       background: var(--bg);
       color: var(--ink);
       line-height: 1.7;
-      padding: 48px 20px 80px;
+      padding: 36px 20px 80px;
     }
     .container { max-width: 780px; margin: 0 auto; }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .back-link { font-size: 14px; color: var(--secondary); text-decoration: none; font-weight: 600; }
+    .lang-switch {
+      display: inline-flex;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 3px;
+      gap: 2px;
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: var(--secondary);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .lang-btn.active {
+      background: var(--ink);
+      color: #fff;
+    }
     .card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -45,17 +74,57 @@
       margin-bottom: 14px;
     }
     a { color: var(--green); text-decoration: none; font-weight: 600; }
+    [data-lang] { display: none; }
+    html[data-active-lang="zh"] [data-lang="zh"] { display: block; }
+    html[data-active-lang="en"] [data-lang="en"] { display: block; }
   </style>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var q = params.get('lang');
+      var saved = null;
+      try { saved = localStorage.getItem('kp_lang'); } catch (e) {}
+      var browserZh = (navigator.language || '').toLowerCase().indexOf('zh') === 0;
+      var lang = (q === 'en' || q === 'zh') ? q : (saved || (browserZh ? 'zh' : 'en'));
+      document.documentElement.setAttribute('data-active-lang', lang);
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    })();
+    function setLang(lang) {
+      document.documentElement.setAttribute('data-active-lang', lang);
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+      try { localStorage.setItem('kp_lang', lang); } catch (e) {}
+      document.querySelectorAll('.lang-btn').forEach(function (btn) {
+        btn.classList.toggle('active', btn.dataset.target === lang);
+      });
+      var home = document.getElementById('home-link');
+      if (home) {
+        home.href = 'index.html?lang=' + lang;
+        home.textContent = lang === 'zh' ? '← 返回产品主页' : '← Back to KeyPulse Home';
+      }
+    }
+    window.addEventListener('DOMContentLoaded', function () {
+      setLang(document.documentElement.getAttribute('data-active-lang') || 'zh');
+    });
+  </script>
 </head>
 <body>
   <div class="container">
-    <div class="card">
-      <span class="tag">100% 本地运行 · 零数据收集 · Zero Data Collection</span>
+    <div class="topbar">
+      <a id="home-link" class="back-link" href="index.html">← Back to KeyPulse Home</a>
+      <div class="lang-switch" role="group" aria-label="Language Switcher">
+        <button class="lang-btn" data-target="zh" onclick="setLang('zh')">中文</button>
+        <button class="lang-btn" data-target="en" onclick="setLang('en')">English</button>
+      </div>
+    </div>
+
+    <!-- 中文版 -->
+    <div class="card" data-lang="zh">
+      <span class="tag">100% 本地运行 · 零数据收集</span>
       <h1>键律 (KeyPulse) 隐私政策</h1>
-      <p>生效日期 / Effective Date: 2026-11-09</p>
+      <p>生效日期：2026-11-09</p>
 
       <h2>1. 核心承诺：我们不收集任何个人数据</h2>
-      <p><strong>键律 (KeyPulse)</strong> 是一款纯本地运行的 macOS 菜单栏工具。本应用<strong>不包含任何网络请求代码、不连接任何远程服务器、不接入任何第三方统计或广告 SDK</strong>。您的所有统计数据 100% 仅保存在您本机的应用沙盒目录中。</p>
+      <p><strong>键律 (KeyPulse)</strong> 是一款纯本地沙盒运行的 macOS 菜单栏工具。本应用<strong>不包含任何网络请求代码、不连接任何远程服务器、不接入任何第三方统计或广告 SDK</strong>。您的所有统计数据 100% 仅保存在您本机的应用沙盒目录中。</p>
 
       <h2>2. 关于「输入监控 (Input Monitoring)」权限的使用说明</h2>
       <ul>
@@ -64,21 +133,28 @@
         <li><strong>随时可暂停与清除</strong>：您可以随时在应用面板右上角一键暂停监测，或在底部点击「重置」彻底清空本机今日统计数据。</li>
       </ul>
 
-      <hr style="border:none;border-top:1px solid var(--border);margin:28px 0;" />
+      <h2>3. 联系方式</h2>
+      <p>如有任何隐私相关疑问，请联系：<a href="mailto:1018995004@qq.com">1018995004@qq.com</a>。</p>
+    </div>
 
-      <h1>KeyPulse Privacy Policy (English)</h1>
+    <!-- English Version -->
+    <div class="card" data-lang="en">
+      <span class="tag">100% On-Device · Zero Data Collection</span>
+      <h1>KeyPulse Privacy Policy</h1>
+      <p>Effective Date: November 9, 2026</p>
+
       <h2>1. Zero Data Collection &amp; Zero Network Access</h2>
-      <p><strong>KeyPulse</strong> operates 100% locally on your Mac. The application contains <strong>no networking code, no cloud sync, no analytics trackers, and no third-party SDKs</strong>. No data ever leaves your device.</p>
+      <p><strong>KeyPulse</strong> operates 100% locally inside the macOS App Sandbox on your Mac. The application contains <strong>no networking code, no cloud sync, no analytics trackers, and no third-party SDKs</strong>. No personal or usage data ever leaves your device.</p>
 
       <h2>2. How Input Monitoring Permission Is Used</h2>
       <ul>
         <li><strong>Timing &amp; Generic Counts Only</strong>: To evaluate your typing cadence, backspace ratio, and continuous focus duration, KeyPulse only measures timestamps across four generic keystroke categories (Typing, Backspace, Navigation/Enter, Shortcuts).</li>
-        <li><strong>Never Logs Characters or Passwords</strong>: KeyPulse never inspects, reads, or stores the characters, words, code, or passwords you type.</li>
+        <li><strong>Never Logs Characters or Passwords</strong>: KeyPulse never inspects, reads, or stores the characters, words, code, or passwords you type (Zero Keylogging).</li>
         <li><strong>Full User Control</strong>: You can pause monitoring at any time with a single click or reset all local statistics from the bottom bar of the app.</li>
       </ul>
 
-      <h2>3. 联系方式 / Contact Us</h2>
-      <p>如有任何隐私相关疑问，请联系：<a href="mailto:1018995004@qq.com">1018995004@qq.com</a> 或返回 <a href="index.html">产品主页</a>。</p>
+      <h2>3. Contact Us</h2>
+      <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:1018995004@qq.com">1018995004@qq.com</a>.</p>
     </div>
   </div>
 </body>
